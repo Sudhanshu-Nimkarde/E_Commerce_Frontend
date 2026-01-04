@@ -77,6 +77,7 @@ class AuthController extends Controller
                 'user_id'    => $resData['data']['user_id'],
                 'auth_token' => $resData['data']['auth_token'],
                 'user_name'  => $resData['data']['user_name'],
+                'role_id'    => $resData['data']['role_id'],
             ]);
 
             return redirect('/dashboard'); // Redirect to dashboard or protected route
