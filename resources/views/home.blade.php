@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ShopEase - Your One-Stop Shopping Destination</title>
+    <link rel="icon" type="image/svg+xml" sizes="any" href="{{ asset('images/home/shopease-favicon.svg') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('images/home/shopease-favicon.png') }}">
+    <link rel="apple-touch-icon" href="{{ asset('images/home/shopease-favicon.png') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="{{ asset('css/main.css') }}">
     
@@ -17,7 +20,7 @@
                 <span><i class="fas fa-envelope"></i> info@shopease.com</span>
             </div>
             <div class="top-right">
-                <a href="#"><i class="fas fa-user"></i> Login</a>
+                <a href="{{ route('login') }}"><i class="fas fa-user"></i> Login</a>
                 <a href="#"><i class="fas fa-heart"></i> Wishlist</a>
             </div>
         </div>

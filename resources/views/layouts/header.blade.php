@@ -7,7 +7,7 @@
                 <input type="text" placeholder="Search for products...">
                 <button><i class="fas fa-search"></i></button>
             </div>
-            <div class="header-right">
+            {{-- <div class="header-right">
                 <div class="icon-box">
                     <i class="fas fa-user"></i>
                 </div>
@@ -19,7 +19,7 @@
                     <i class="fas fa-shopping-cart"></i>
                     <span class="badge">3</span>
                 </div>
-            </div>
+            </div> --}}
         </div>
     </div>
     

@@ -7,7 +7,7 @@
         </div>
         <div class="top-right">
             <a href="#"><i class="fas fa-user"></i> Login</a>
-            <a href="#"><i class="fas fa-heart"></i> Wishlist</a>
+            {{-- <a href="#"><i class="fas fa-heart"></i> Wishlist</a> --}}
         </div>
     </div>
 </div>
