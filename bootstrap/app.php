@@ -16,6 +16,7 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->alias([
             'check.token' => App\Http\Middleware\AttachAuthHeaders::class,
             'check.session' => App\Http\Middleware\CheckUserSession::class,
+            'frontend.auth' => App\Http\Middleware\FrontendAuthenticate::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {

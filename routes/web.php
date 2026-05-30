@@ -2,27 +2,139 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\Customer\CustomerDashboardController;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Http;
 
-
-
-// Route::get('/', function () {
-//     $response = Http::get('http://localhost:8000/api/ping');
-//     return view('welcome', ['message' => $response->json('message')]);
-// });
+/*
+|--------------------------------------------------------------------------
+| Public Routes
+|--------------------------------------------------------------------------
+*/
 
 Route::get('/', function () {
+
     return view('home');
 });
 
-Route::get('/login', [AuthController::class, 'login'])->name('login');
-Route::get('/register', [AuthController::class, 'register'])->name('register');
-Route::post('/addUser', [AuthController::class, 'addUser'])->name('addUser');
 
-Route::post('/login-user', [AuthController::class, 'loginUser'])->name('login.submit');
+/*
+|--------------------------------------------------------------------------
+| Guest Routes
+|--------------------------------------------------------------------------
+*/
+
+Route::middleware('guest')->group(function () {
+
+    /*
+    |--------------------------------------------------------------------------
+    | Login
+    |--------------------------------------------------------------------------
+    */
+
+    Route::get('/login', [AuthController::class, 'login'])
+        ->name('login');
+
+    Route::post('/login-user', [AuthController::class, 'loginUser'])
+        ->name('login.submit');
 
 
-Route::get('/dashboard', [DashboardController::class, 'viewDashboard'])
-    ->middleware('check.token')
-    ->name('dashboard');
+    /*
+    |--------------------------------------------------------------------------
+    | Register
+    |--------------------------------------------------------------------------
+    */
+
+    Route::get('/register', [AuthController::class, 'register'])
+        ->name('register');
+
+    Route::post('/addUser', [AuthController::class, 'addUser'])
+        ->name('addUser');
+});
+
+
+/*
+|--------------------------------------------------------------------------
+| Logout
+|--------------------------------------------------------------------------
+*/
+
+Route::post('/logout', [AuthController::class, 'logout'])
+    ->middleware(['frontend.auth']);
+
+
+/*
+|--------------------------------------------------------------------------
+| Admin Routes
+|--------------------------------------------------------------------------
+*/
+
+Route::middleware(['frontend.auth:Admin', 'check.token'])->group(function () {
+
+    Route::get('/admin/dashboard', [DashboardController::class, 'adminDashboard'])
+        ->name('admin.dashboard');
+});
+
+
+/*
+|--------------------------------------------------------------------------
+| Shopkeeper Routes
+|--------------------------------------------------------------------------
+*/
+
+Route::middleware(['frontend.auth:Shopkeeper', 'check.token'])->group(function () {
+
+    Route::get('/shopkeeper/dashboard', [DashboardController::class, 'shopkeeperDashboard'])
+        ->name('shopkeeper.dashboard');
+});
+
+
+/*
+|--------------------------------------------------------------------------
+| Customer Routes
+|--------------------------------------------------------------------------
+*/
+
+Route::middleware(['frontend.auth:Customer', 'check.token'])->group(function () {
+
+    Route::get('/customer/dashboard', [CustomerDashboardController::class, 'index'])
+        ->name('customer.dashboard');
+});
+
+
+/*
+|--------------------------------------------------------------------------
+| Support Routes
+|--------------------------------------------------------------------------
+*/
+
+Route::middleware(['frontend.auth:Support', 'check.token'])->group(function () {
+
+    Route::get('/support/dashboard', [CustomerDashboardController::class, 'supportDashboard'])
+        ->name('support.dashboard');
+});
+
+
+/*
+|--------------------------------------------------------------------------
+| Delivery Manager Routes
+|--------------------------------------------------------------------------
+*/
+
+Route::middleware(['frontend.auth:Delivery Manager', 'check.token'])->group(function () {
+
+    Route::get('/delivery/dashboard', [DashboardController::class, 'deliveryDashboard'])
+        ->name('delivery.dashboard');
+});
+
+
+/*
+|--------------------------------------------------------------------------
+| Inventory Manager Routes
+|--------------------------------------------------------------------------
+*/
+
+Route::middleware(['frontend.auth:Inventory Manager', 'check.token'])->group(function () {
+
+    Route::get('/inventory/dashboard', [DashboardController::class, 'inventoryDashboard'])
+        ->name('inventory.dashboard');
+});
