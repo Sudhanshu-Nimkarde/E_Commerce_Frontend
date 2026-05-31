@@ -1,13 +1,17 @@
-<!-- TOP BAR -->
 <div class="top-bar">
-    <div class="container">
-        <div class="contact-info">
-            <span><i class="fas fa-phone"></i> +1 234 567 890</span>
-            <span><i class="fas fa-envelope"></i> info@shopease.com</span>
+    <div class="top-bar__inner">
+        <div class="top-bar__promo">
+            <span class="promo-pill">Fast delivery</span>
+            <span>Fresh deals, quick checkout, and curated daily essentials.</span>
         </div>
-        <div class="top-right">
-            <a href="#"><i class="fas fa-user"></i> Login</a>
-            {{-- <a href="#"><i class="fas fa-heart"></i> Wishlist</a> --}}
+
+        <div class="top-bar__links">
+            <a href="{{ route('login') }}">
+                <i class="fa-regular fa-user me-1"></i> Login
+            </a>
+            <a href="{{ route('register') }}">
+                <i class="fa-solid fa-user-plus me-1"></i> Sign Up
+            </a>
         </div>
     </div>
 </div>
