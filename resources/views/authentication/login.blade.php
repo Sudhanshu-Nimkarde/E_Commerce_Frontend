@@ -230,7 +230,7 @@
             @csrf
 
             <div class="form-group">
-                <label for="user_name">User name</label>
+                <label for="user_name">Username</label>
                 <input type="user_name" class="form-control @error('user_name') is-invalid @enderror" id="user_name" name="user_name" value="{{ old('user_name') }}" required autocomplete="user_name" autofocus>
                 @error('user_name')
                     <span class="invalid-feedback" role="alert">
