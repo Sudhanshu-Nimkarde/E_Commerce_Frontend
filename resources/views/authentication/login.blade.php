@@ -188,6 +188,32 @@
     .forgot-password:hover {
         color: #ff6b6b;
     }
+
+    .password-group {
+        position: relative;
+    }
+
+    .password-group .form-control {
+        padding-right: 45px;
+    }
+
+    .password-toggle-btn {
+        position: absolute;
+        top: 50%;
+        right: 12px;
+        transform: translateY(-50%);
+        border: none;
+        background: transparent;
+        color: #777;
+        cursor: pointer;
+        padding: 0;
+        width: 30px;
+        height: 30px;
+    }
+
+    .password-toggle-btn:hover {
+        color: #ff6b6b;
+    }
 </style>
 @endsection
 
@@ -204,7 +230,7 @@
             @csrf
 
             <div class="form-group">
-                <label for="user_name">Email Address</label>
+                <label for="user_name">Username</label>
                 <input type="user_name" class="form-control @error('user_name') is-invalid @enderror" id="user_name" name="user_name" value="{{ old('user_name') }}" required autocomplete="user_name" autofocus>
                 @error('user_name')
                     <span class="invalid-feedback" role="alert">
@@ -215,7 +241,12 @@
 
             <div class="form-group">
                 <label for="password">Password</label>
-                <input type="password" class="form-control @error('password') is-invalid @enderror" id="password" name="password" required autocomplete="current-password">
+                <div class="password-group">
+                    <input type="password" class="form-control @error('password') is-invalid @enderror" id="password" name="password" required autocomplete="current-password">
+                    <button type="button" id="togglePasswordBtn" class="password-toggle-btn" aria-label="Show password">
+                        <i class="fa-solid fa-eye" id="passwordIcon"></i>
+                    </button>
+                </div>
                 @error('password')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
@@ -249,4 +280,26 @@
         </form>
     </div>
 </div>
+@endsection
+
+@section('scripts')
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const passwordInput = document.getElementById('password');
+        const toggleButton = document.getElementById('togglePasswordBtn');
+        const passwordIcon = document.getElementById('passwordIcon');
+
+        if (!passwordInput || !toggleButton || !passwordIcon) {
+            return;
+        }
+
+        toggleButton.addEventListener('click', function () {
+            const isHidden = passwordInput.type === 'password';
+            passwordInput.type = isHidden ? 'text' : 'password';
+            passwordIcon.classList.toggle('fa-eye', !isHidden);
+            passwordIcon.classList.toggle('fa-eye-slash', isHidden);
+            toggleButton.setAttribute('aria-label', isHidden ? 'Hide password' : 'Show password');
+        });
+    });
+</script>
 @endsection
