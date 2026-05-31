@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="ShopEase favicon">
+  <defs>
+    <linearGradient id="bg" x1="8" y1="8" x2="56" y2="56" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#ff6b6b"/>
+      <stop offset="100%" stop-color="#ff8a00"/>
+    </linearGradient>
+    <linearGradient id="cart" x1="16" y1="18" x2="50" y2="48" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#f8fbff"/>
+    </linearGradient>
+  </defs>
+
+  <rect x="3" y="3" width="58" height="58" rx="16" fill="url(#bg)"/>
+
+  <path d="M17 20h4l3 16h21.5l3.2-11H26.3" fill="none" stroke="url(#cart)" stroke-width="4.3" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M24.5 27h21l-2.7 8.8H27.3z" fill="url(#cart)" opacity="0.97"/>
+  <path d="M18.4 20l2.8 16" fill="none" stroke="url(#cart)" stroke-width="4.3" stroke-linecap="round"/>
+
+  <circle cx="27" cy="44" r="4.2" fill="#1f6fff"/>
+  <circle cx="43" cy="44" r="4.2" fill="#1f6fff"/>
+
+  <path d="M41.5 14l1.2 2.8 2.8 1.2-2.8 1.2-1.2 2.8-1.2-2.8-2.8-1.2 2.8-1.2z" fill="#fff2b3"/>
+  <path d="M48.5 17l.9 2 2 .9-2 .9-.9 2-.9-2-2-.9 2-.9z" fill="#fff7d6"/>
+</svg>
