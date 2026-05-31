@@ -60,6 +60,32 @@ class AuthController extends Controller
         return response()->json($response->json(), $response->status());
     }
 
+    // public function loginUser(Request $request)
+    // {
+    //     $backendUrl = config('app.backend_url');
+
+    //     $response = Http::post($backendUrl . '/api/login-user', [
+    //         'user_name' => $request->input('user_name'),
+    //         'password'  => $request->input('password'),
+    //     ]);
+
+    //     $resData = $response->json();
+
+    //     // If login successful, store data in session
+    //     if ($response->ok() && $resData['status']) {
+    //         session([
+    //             'user_id'    => $resData['data']['user_id'],
+    //             'auth_token' => $resData['data']['auth_token'],
+    //             'user_name'  => $resData['data']['user_name'],
+    //             'role_id'    => $resData['data']['role_id'],
+    //         ]);
+
+    //         return redirect('/dashboard'); // Redirect to dashboard or protected route
+    //     }
+
+    //     return redirect('/login')->withErrors(['error' => $resData['message'] ?? 'Login failed']);
+    // }
+
     public function loginUser(Request $request)
     {
         $backendUrl = config('app.backend_url');
@@ -71,19 +97,47 @@ class AuthController extends Controller
 
         $resData = $response->json();
 
-        // If login successful, store data in session
         if ($response->ok() && $resData['status']) {
+
+            // Store session
             session([
                 'user_id'    => $resData['data']['user_id'],
                 'auth_token' => $resData['data']['auth_token'],
                 'user_name'  => $resData['data']['user_name'],
                 'role_id'    => $resData['data']['role_id'],
+                'role_name'  => $resData['data']['role_name'],
             ]);
 
-            return redirect('/dashboard'); // Redirect to dashboard or protected route
+            // Role based redirect
+            switch ($resData['data']['role_name']) {
+
+                case 'Admin':
+                    return redirect('/admin/dashboard');
+
+                case 'Shopkeeper':
+                    return redirect('/shopkeeper/dashboard');
+
+                case 'Customer':
+                    return redirect('/customer/dashboard');
+
+                case 'Support':
+                    return redirect('/support/dashboard');
+
+                case 'Delivery Manager':
+                    return redirect('/delivery/dashboard');
+
+                case 'Inventory Manager':
+                    return redirect('/inventory/dashboard');
+
+                default:
+                    return redirect('/dashboard');
+            }
         }
 
-        return redirect('/login')->withErrors(['error' => $resData['message'] ?? 'Login failed']);
+        return redirect('/login')
+            ->withErrors([
+                'error' => $resData['message'] ?? 'Login failed'
+            ]);
     }
 
 
