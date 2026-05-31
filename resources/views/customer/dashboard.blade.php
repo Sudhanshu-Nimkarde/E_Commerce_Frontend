@@ -1,68 +1,112 @@
 @extends('layouts.user.user_nav_layout')
 
+@section('title', 'Customer Dashboard - ShopEase')
+
 @section('main_content')
-<div class="f-card p-5 mb-4 border-0 text-white" style="background: linear-gradient(135deg, #0099ff 0%, #00d2ff 100%);">
-    <div class="row align-items-center">
-        <div class="col-md-6">
-            <h1 class="display-5 fw-bold mb-3">Explore the Future of Tech</h1>
-            <p class="opacity-75 mb-4">Upgrade your workspace with our premium gadgets and electronics.</p>
-            <button class="btn btn-light text-primary fw-bold px-4 py-2">Start Shopping</button>
-        </div>
-    </div>
-</div>
+<div class="dashboard-hero mb-4">
+    <div class="row g-4 align-items-center">
+        <div class="col-lg-7 dashboard-hero__copy">
+            <span class="section-kicker">Customer dashboard</span>
+            <h1 class="mt-3">Track orders, revisit categories, and keep shopping moving.</h1>
+            <p class="mt-3 mb-0">
+                This dashboard pairs a clean content hierarchy with quick-access cards so the interface feels more like a modern commerce app.
+            </p>
 
-<h4 class="fw-bold mb-4">Featured Categories</h4>
-<div class="row g-4 mb-5">
-    @foreach(['Electronics', 'Wearables', 'Audio', 'Home Office'] as $cat)
-    <div class="col-md-3 text-center">
-        <div class="f-card p-4">
-            <div class="bg-primary bg-opacity-10 text-primary rounded-circle mx-auto mb-3" style="width: 60px; height: 60px; line-height: 60px; font-size: 24px;">
-                <i class="bi bi-lightning-charge"></i>
+            <div class="dashboard-hero__actions">
+                <a href="#" class="btn btn-light">Start Shopping</a>
+                <a href="#" class="btn btn-outline-primary">Track Orders</a>
             </div>
-            <h6 class="fw-bold m-0">{{ $cat }}</h6>
+        </div>
+
+        <div class="col-lg-5 dashboard-hero__visual">
+            <img src="{{ asset('images/home/home-main.jpg') }}" class="img-fluid rounded-4 shadow" alt="Fresh groceries and essentials">
         </div>
     </div>
-    @endforeach
 </div>
 
-<h4 class="fw-bold mb-4">Your Recent Activity</h4>
+<div class="dashboard-kpi-grid mb-4">
+    <div class="metric-card">
+        <div class="metric-label">Total Orders</div>
+        <div class="metric-value">24</div>
+    </div>
+    <div class="metric-card">
+        <div class="metric-label">Pending Deliveries</div>
+        <div class="metric-value">3</div>
+    </div>
+    <div class="metric-card">
+        <div class="metric-label">Wishlist Items</div>
+        <div class="metric-value">12</div>
+    </div>
+    <div class="metric-card">
+        <div class="metric-label">Reward Points</div>
+        <div class="metric-value">1,420</div>
+    </div>
+</div>
+
+<div class="section-header section-header--left mt-5">
+    <span class="section-kicker">Quick access</span>
+    <h2>Featured Categories</h2>
+    <p>Use a 4-up tile layout to surface the most useful collections in the customer area.</p>
+</div>
+
+<div class="dashboard-category-grid mb-4">
+    <div class="dashboard-category">
+        <i class="bi bi-lightning-charge"></i>
+        <h6>Electronics</h6>
+        <p>Fast moving gadgets</p>
+    </div>
+
+    <div class="dashboard-category">
+        <i class="bi bi-bag-heart"></i>
+        <h6>Wearables</h6>
+        <p>Daily smart essentials</p>
+    </div>
+
+    <div class="dashboard-category">
+        <i class="bi bi-headphones"></i>
+        <h6>Audio</h6>
+        <p>Sound and accessories</p>
+    </div>
+
+    <div class="dashboard-category">
+        <i class="bi bi-house-heart"></i>
+        <h6>Home Office</h6>
+        <p>Work-from-home upgrades</p>
+    </div>
+</div>
+
 <div class="f-card p-4">
-    <div class="row align-items-center">
-        <div class="col-auto">
-            <img src="https://via.placeholder.com/100" class="rounded-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <div>
+            <h5 class="fw-bold mb-1">Recent Activity</h5>
+            <p class="text-muted mb-0">Latest order updates and customer interactions.</p>
         </div>
-        <div class="col">
-            <h6 class="fw-bold mb-1">Wireless Noise Cancelling Headphones</h6>
-            <p class="text-muted small mb-0">Purchased on Jan 12, 2026</p>
-        </div>
-        <div class="col-auto">
-            <button class="btn btn-outline-primary btn-sm rounded-pill px-4">View Order</button>
-        </div>
+        <a href="#" class="btn btn-outline-primary btn-sm">View All</a>
     </div>
-</div>
-@endsection
 
-@section('main_content')
-<div class="row mb-5">
-    <div class="col-12 p-5 glass-card text-center overflow-hidden" style="background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://source.unsplash.com/random/1200x400/?cyberpunk'); background-size: cover;">
-        <h1 class="orbitron display-4 fw-bold">SUMMER_DROP_2026</h1>
-        <p class="lead">Get the latest cybernetic enhancements at 30% off.</p>
-        <button class="btn btn-futuristic btn-lg mt-3">Explore Store</button>
-    </div>
-</div>
-
-<div class="row g-4">
-    <div class="col-md-4">
-        <div class="glass-card overflow-hidden">
-            <img src="https://via.placeholder.com/400x300" class="img-fluid" alt="product">
-            <div class="p-4">
-                <h5 class="orbitron">Neural Link V2</h5>
-                <p class="text-secondary small">Experience the web directly in your cortex.</p>
-                <div class="d-flex justify-content-between align-items-center">
-                    <span class="fs-4 fw-bold text-info">$899</span>
-                    <button class="btn btn-sm btn-futuristic">Purchase</button>
-                </div>
+    <div class="dashboard-list">
+        <div class="dashboard-list__item">
+            <div>
+                <h6 class="dashboard-list__title">Fresh Produce Box</h6>
+                <div class="dashboard-list__meta">Ordered on Jan 12, 2026</div>
             </div>
+            <span class="badge bg-success-subtle text-success rounded-pill px-3 py-2">Delivered</span>
+        </div>
+
+        <div class="dashboard-list__item">
+            <div>
+                <h6 class="dashboard-list__title">Weekend Snack Bundle</h6>
+                <div class="dashboard-list__meta">Ordered on Jan 15, 2026</div>
+            </div>
+            <span class="badge bg-warning-subtle text-warning rounded-pill px-3 py-2">Processing</span>
+        </div>
+
+        <div class="dashboard-list__item">
+            <div>
+                <h6 class="dashboard-list__title">Home Essentials Kit</h6>
+                <div class="dashboard-list__meta">Saved to wishlist</div>
+            </div>
+            <span class="badge bg-primary-subtle text-primary rounded-pill px-3 py-2">Saved</span>
         </div>
     </div>
 </div>

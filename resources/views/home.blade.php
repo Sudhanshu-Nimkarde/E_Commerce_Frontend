@@ -3,458 +3,390 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#0f172a">
     <title>ShopEase - Your One-Stop Shopping Destination</title>
     <link rel="icon" type="image/svg+xml" sizes="any" href="{{ asset('images/home/shopease-favicon.svg') }}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/main.css') }}">
-    
 </head>
-<body>
-    <!-- Top Bar -->
-    <div class="top-bar">
-        <div class="container">
-            <div class="contact-info">
-                <span><i class="fas fa-phone"></i> +1 234 567 890</span>
-                <span><i class="fas fa-envelope"></i> info@shopease.com</span>
-            </div>
-            <div class="top-right">
-                <a href="{{ route('login') }}"><i class="fas fa-user"></i> Login</a>
-                <a href="#"><i class="fas fa-heart"></i> Wishlist</a>
-            </div>
-        </div>
-    </div>
+<body class="storefront-page">
+    @include('layouts.topbar')
+    @include('layouts.header')
 
-    <!-- Header -->
-    <header>
-        <div class="header-main">
+    <main id="home">
+        <section class="hero-section">
             <div class="container">
-                <div class="logo">Shop<span>Ease</span></div>
-                <div class="search-bar">
-                    <input type="text" placeholder="Search for products...">
-                    <button><i class="fas fa-search"></i></button>
-                </div>
-                <div class="header-right">
-                    <div class="icon-box">
-                        <i class="fas fa-user"></i>
+                <div class="hero-grid">
+                    <div class="hero-copy">
+                        <span class="hero-eyebrow">Fast delivery. Fresh picks. Better deals.</span>
+                        <h1 class="hero-title">Shop groceries, essentials, and daily needs with a smoother checkout flow.</h1>
+                        <p class="hero-subtitle">
+                            ShopEase gives your customers a clean ecommerce experience inspired by modern quick-commerce apps:
+                            faster browsing, clearer product cards, and strong calls to action.
+                        </p>
+
+                        <div class="hero-actions">
+                            <a href="#featured" class="btn btn-primary">Shop Now</a>
+                            <a href="#categories" class="btn btn-outline-primary">Browse Categories</a>
+                        </div>
+
+                        <div class="hero-metrics">
+                            <div class="hero-metric">
+                                <strong>15 min</strong>
+                                <span>Average dispatch window</span>
+                            </div>
+                            <div class="hero-metric">
+                                <strong>2,500+</strong>
+                                <span>Curated essentials</span>
+                            </div>
+                            <div class="hero-metric">
+                                <strong>24/7</strong>
+                                <span>Support and tracking</span>
+                            </div>
+                        </div>
                     </div>
-                    <div class="icon-box">
-                        <i class="fas fa-heart"></i>
-                        <span class="badge">2</span>
-                    </div>
-                    <div class="icon-box">
-                        <i class="fas fa-shopping-cart"></i>
-                        <span class="badge">3</span>
+
+                    <div class="hero-visual">
+                        <img src="{{ asset('images/home/home-main.jpg') }}" alt="Fresh groceries and essentials">
+                        <div class="hero-floating-card">
+                            <span class="hero-floating-card__label">Trending today</span>
+                            <strong class="hero-floating-card__value">Fresh produce bundle</strong>
+                            <span class="hero-floating-card__meta">Up to 20% off on selected essentials</span>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        
-        <!-- Navigation -->
-        <nav>
+        </section>
+
+        <section class="section section--surface" id="categories">
             <div class="container">
-                {{-- <div class="hamburger">
-                    <i class="fas fa-bars"></i>
-                </div> --}}
-                <ul class="nav-links">
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">Shop</a></li>
-                    <li><a href="#">Categories</a></li>
-                    <li><a href="#">New Arrivals</a></li>
-                    <li><a href="#">Deals</a></li>
-                    <li><a href="#">About Us</a></li>
-                    <li><a href="#">Contact</a></li>
-                </ul>
-                <div class="nav-right">
-                    <i class="fas fa-headset"></i> Customer Support
+                <div class="section-header">
+                    <span class="section-kicker">Shop by category</span>
+                    <h2>Popular Categories</h2>
+                    <p>Quickly guide shoppers into the most useful collections with clear visual cards and strong contrast.</p>
                 </div>
-            </div>
-        </nav>
-    </header>
 
-    <!-- Hero Section -->   
-    <section class="hero">
-        <img src="{{ asset('images/home/home-main.jpg') }}" alt="Hero Background" class="hero-bg">
-        <div class="hero-overlay"></div>
-        <div class="container">
-            <div class="hero-content">
-                <h1>Shop the Latest Trends</h1>
-                <p>Discover amazing products with great deals. Quality items for your everyday needs.</p>
-                <a href="#" class="btn btn-primary">Shop Now</a>
-            </div>
-        </div>
-    </section>
+                <div class="category-grid">
+                    <a href="#" class="category-card category-card--fresh">
+                        <div class="category-card__icon">
+                            <i class="fas fa-carrot"></i>
+                        </div>
+                        <div class="category-card__body">
+                            <span>Fresh Picks</span>
+                            <strong>Fruits &amp; Veggies</strong>
+                            <div class="category-card__meta">Daily farm-fresh arrivals</div>
+                        </div>
+                    </a>
 
-    <!-- Categories -->
-    <section class="section">
-        <div class="container">
-            <div class="section-header">
-                <h2>Popular Categories</h2>
-            </div>
-            <div class="categories">
-                <a href="#" class="category-item">
-                    <img src="/api/placeholder/300/200" alt="Electronics">
-                    <div class="category-name">Electronics</div>
-                </a>
-                <a href="#" class="category-item">
-                    <img src="/api/placeholder/300/200" alt="Fashion">
-                    <div class="category-name">Fashion</div>
-                </a>
-                <a href="#" class="category-item">
-                    <img src="/api/placeholder/300/200" alt="Home & Kitchen">
-                    <div class="category-name">Home & Kitchen</div>
-                </a>
-                <a href="#" class="category-item">
-                    <img src="/api/placeholder/300/200" alt="Beauty">
-                    <div class="category-name">Beauty</div>
-                </a>
-            </div>
-        </div>
-    </section>
+                    <a href="#" class="category-card category-card--dairy">
+                        <div class="category-card__icon">
+                            <i class="fas fa-bread-slice"></i>
+                        </div>
+                        <div class="category-card__body">
+                            <span>Breakfast</span>
+                            <strong>Dairy &amp; Bakery</strong>
+                            <div class="category-card__meta">Morning essentials in one place</div>
+                        </div>
+                    </a>
 
-    <!-- Featured Products -->
-    <section class="section featured-products">
-        <div class="container">
-            <div class="section-header">
-                <h2>Featured Products</h2>
+                    <a href="#" class="category-card category-card--snacks">
+                        <div class="category-card__icon">
+                            <i class="fas fa-bowl-food"></i>
+                        </div>
+                        <div class="category-card__body">
+                            <span>Snacking</span>
+                            <strong>Snacks &amp; Beverages</strong>
+                            <div class="category-card__meta">Fast grab-and-go favorites</div>
+                        </div>
+                    </a>
+
+                    <a href="#" class="category-card category-card--home">
+                        <div class="category-card__icon">
+                            <i class="fas fa-house"></i>
+                        </div>
+                        <div class="category-card__body">
+                            <span>Everyday</span>
+                            <strong>Home &amp; Essentials</strong>
+                            <div class="category-card__meta">Products that sell on repeat</div>
+                        </div>
+                    </a>
+                </div>
             </div>
-            <div class="products">
-                <!-- Product 1 -->
-                <div class="product-card">
-                    <div class="product-img">
-                        <img src="/api/placeholder/300/300" alt="Product 1">
-                        <div class="product-badge">New</div>
-                        <div class="product-icons">
-                            <div class="product-icon"><i class="far fa-heart"></i></div>
-                            <div class="product-icon"><i class="fas fa-eye"></i></div>
-                            <div class="product-icon"><i class="fas fa-sync-alt"></i></div>
-                        </div>
-                    </div>
-                    <div class="product-details">
-                        <div class="product-title">Wireless Bluetooth Headphones</div>
-                        <div class="stars">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star-half-alt"></i>
-                            <span>(4.5)</span>
-                        </div>
-                        <div class="product-price">
-                            <div>
-                                <span class="original-price">$89.99</span>
-                                <span class="price">$69.99</span>
-                            </div>
-                            <button class="add-to-cart"><i class="fas fa-shopping-cart"></i></button>
-                        </div>
-                    </div>
+        </section>
+
+        <section class="section section--muted" id="featured">
+            <div class="container">
+                <div class="section-header section-header--left">
+                    <span class="section-kicker">Featured picks</span>
+                    <h2>Best Sellers</h2>
+                    <p>Four clean product cards with image, badge, rating, and a strong cart action for faster browsing.</p>
                 </div>
-                
-                <!-- Product 2 -->
-                <div class="product-card">
-                    <div class="product-img">
-                        <img src="/api/placeholder/300/300" alt="Product 2">
-                        <div class="product-badge">-20%</div>
-                        <div class="product-icons">
-                            <div class="product-icon"><i class="far fa-heart"></i></div>
-                            <div class="product-icon"><i class="fas fa-eye"></i></div>
-                            <div class="product-icon"><i class="fas fa-sync-alt"></i></div>
-                        </div>
-                    </div>
-                    <div class="product-details">
-                        <div class="product-title">Smart Watch Series 5</div>
-                        <div class="stars">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="far fa-star"></i>
-                            <span>(4.0)</span>
-                        </div>
-                        <div class="product-price">
-                            <div>
-                                <span class="original-price">$199.99</span>
-                                <span class="price">$159.99</span>
+
+                <div class="product-grid">
+                    <article class="product-card">
+                        <div class="product-card__media">
+                            <img src="{{ asset('images/home/home-main.jpg') }}" alt="Fresh produce box">
+                            <span class="product-card__badge">New</span>
+                            <div class="product-card__actions">
+                                <button type="button" class="product-card__action" aria-label="Add to wishlist">
+                                    <i class="far fa-heart"></i>
+                                </button>
+                                <button type="button" class="product-card__action" aria-label="Quick view">
+                                    <i class="far fa-eye"></i>
+                                </button>
                             </div>
-                            <button class="add-to-cart"><i class="fas fa-shopping-cart"></i></button>
                         </div>
-                    </div>
-                </div>
-                
-                <!-- Product 3 -->
-                <div class="product-card">
-                    <div class="product-img">
-                        <img src="/api/placeholder/300/300" alt="Product 3">
-                        <div class="product-icons">
-                            <div class="product-icon"><i class="far fa-heart"></i></div>
-                            <div class="product-icon"><i class="fas fa-eye"></i></div>
-                            <div class="product-icon"><i class="fas fa-sync-alt"></i></div>
-                        </div>
-                    </div>
-                    <div class="product-details">
-                        <div class="product-title">Premium Leather Wallet</div>
-                        <div class="stars">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <span>(5.0)</span>
-                        </div>
-                        <div class="product-price">
-                            <div>
-                                <span class="price">$49.99</span>
+                        <div class="product-card__body">
+                            <h3 class="product-card__title">Fresh Produce Box</h3>
+                            <div class="rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                                <span>(4.5)</span>
                             </div>
-                            <button class="add-to-cart"><i class="fas fa-shopping-cart"></i></button>
+                            <div class="price-row">
+                                <div>
+                                    <span class="original-price">$29.99</span>
+                                    <span class="price">$19.99</span>
+                                </div>
+                                <button type="button" class="product-card__add" aria-label="Add to cart">
+                                    <i class="fas fa-shopping-cart"></i>
+                                </button>
+                            </div>
                         </div>
-                    </div>
+                    </article>
+
+                    <article class="product-card">
+                        <div class="product-card__media">
+                            <img src="{{ asset('images/home/home-main.jpg') }}" alt="Daily essentials pack">
+                            <span class="product-card__badge">-20%</span>
+                            <div class="product-card__actions">
+                                <button type="button" class="product-card__action" aria-label="Add to wishlist">
+                                    <i class="far fa-heart"></i>
+                                </button>
+                                <button type="button" class="product-card__action" aria-label="Quick view">
+                                    <i class="far fa-eye"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="product-card__body">
+                            <h3 class="product-card__title">Daily Essentials Pack</h3>
+                            <div class="rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                                <span>(4.0)</span>
+                            </div>
+                            <div class="price-row">
+                                <div>
+                                    <span class="original-price">$24.99</span>
+                                    <span class="price">$18.99</span>
+                                </div>
+                                <button type="button" class="product-card__add" aria-label="Add to cart">
+                                    <i class="fas fa-shopping-cart"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="product-card">
+                        <div class="product-card__media">
+                            <img src="{{ asset('images/home/home-main.jpg') }}" alt="Weekend snack bundle">
+                            <span class="product-card__badge">Hot</span>
+                            <div class="product-card__actions">
+                                <button type="button" class="product-card__action" aria-label="Add to wishlist">
+                                    <i class="far fa-heart"></i>
+                                </button>
+                                <button type="button" class="product-card__action" aria-label="Quick view">
+                                    <i class="far fa-eye"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="product-card__body">
+                            <h3 class="product-card__title">Weekend Snack Bundle</h3>
+                            <div class="rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <span>(5.0)</span>
+                            </div>
+                            <div class="price-row">
+                                <div>
+                                    <span class="original-price">$34.99</span>
+                                    <span class="price">$24.99</span>
+                                </div>
+                                <button type="button" class="product-card__add" aria-label="Add to cart">
+                                    <i class="fas fa-shopping-cart"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="product-card">
+                        <div class="product-card__media">
+                            <img src="{{ asset('images/home/home-main.jpg') }}" alt="Home essentials kit">
+                            <span class="product-card__badge">Bestseller</span>
+                            <div class="product-card__actions">
+                                <button type="button" class="product-card__action" aria-label="Add to wishlist">
+                                    <i class="far fa-heart"></i>
+                                </button>
+                                <button type="button" class="product-card__action" aria-label="Quick view">
+                                    <i class="far fa-eye"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="product-card__body">
+                            <h3 class="product-card__title">Home Essentials Kit</h3>
+                            <div class="rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                                <i class="far fa-star"></i>
+                                <span>(3.5)</span>
+                            </div>
+                            <div class="price-row">
+                                <div>
+                                    <span class="original-price">$39.99</span>
+                                    <span class="price">$29.99</span>
+                                </div>
+                                <button type="button" class="product-card__add" aria-label="Add to cart">
+                                    <i class="fas fa-shopping-cart"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </article>
                 </div>
-                
-                <!-- Product 4 -->
-                <div class="product-card">
-                    <div class="product-img">
-                        <img src="/api/placeholder/300/300" alt="Product 4">
-                        <div class="product-badge">Hot</div>
-                        <div class="product-icons">
-                            <div class="product-icon"><i class="far fa-heart"></i></div>
-                            <div class="product-icon"><i class="fas fa-eye"></i></div>
-                            <div class="product-icon"><i class="fas fa-sync-alt"></i></div>
-                        </div>
+            </div>
+        </section>
+
+        <section class="section" id="deals">
+            <div class="container">
+                <div class="deal-card">
+                    <div class="deal-media">
+                        <img src="{{ asset('images/home/home-main.jpg') }}" alt="Deal of the day">
+                        <span class="deal-badge">Deal of the Day</span>
                     </div>
-                    <div class="product-details">
-                        <div class="product-title">Portable Bluetooth Speaker</div>
-                        <div class="stars">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star-half-alt"></i>
-                            <i class="far fa-star"></i>
-                            <span>(3.5)</span>
+
+                    <div class="deal-copy">
+                        <span class="section-kicker">Limited time offer</span>
+                        <h2>Fresh produce bundle at a special price.</h2>
+                        <p>
+                            Highlight a fast-moving daily offer with a clean split layout, readable timer,
+                            and a clear CTA that feels premium on laptop and Windows screens.
+                        </p>
+
+                        <div class="deal-timer js-countdown" data-countdown-end="{{ now()->addDays(8)->addHours(17)->addMinutes(42)->addSeconds(15)->toIso8601String() }}">
+                            <div class="timer-box">
+                                <span class="timer-value" data-unit="days">08</span>
+                                <span class="timer-label">Days</span>
+                            </div>
+                            <div class="timer-box">
+                                <span class="timer-value" data-unit="hours">17</span>
+                                <span class="timer-label">Hours</span>
+                            </div>
+                            <div class="timer-box">
+                                <span class="timer-value" data-unit="minutes">42</span>
+                                <span class="timer-label">Minutes</span>
+                            </div>
+                            <div class="timer-box">
+                                <span class="timer-value" data-unit="seconds">15</span>
+                                <span class="timer-label">Seconds</span>
+                            </div>
                         </div>
-                        <div class="product-price">
+
+                        <div class="deal-price">
                             <div>
                                 <span class="original-price">$79.99</span>
-                                <span class="price">$59.99</span>
+                                <span class="price">$49.99</span>
                             </div>
-                            <button class="add-to-cart"><i class="fas fa-shopping-cart"></i></button>
+                            <a href="#featured" class="btn btn-primary">Shop Now</a>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Deal of the Day -->
-    <section class="section deal">
-        <div class="container">
-            <div class="deal-content">
-                <div class="deal-image">
-                    <img src="/api/placeholder/600/400" alt="Deal of the Day">
-                </div>
-                <div class="deal-text">
-                    <h3>Deal of the Day</h3>
-                    <h2>Premium Noise Cancelling Headphones</h2>
-                    <p>Experience crystal clear sound with our premium noise cancelling headphones. Perfect for music lovers and professionals who demand the best audio quality.</p>
-                    <div class="timer">
-                        <div class="timer-box">
-                            <span class="time">08</span>
-                            <span class="label">Days</span>
-                        </div>
-                        <div class="timer-box">
-                            <span class="time">17</span>
-                            <span class="label">Hours</span>
-                        </div>
-                        <div class="timer-box">
-                            <span class="time">42</span>
-                            <span class="label">Minutes</span>
-                        </div>
-                        <div class="timer-box">
-                            <span class="time">15</span>
-                            <span class="label">Seconds</span>
-                        </div>
-                    </div>
-                    
-                    <div class="price">
-                        <span class="original-price">$299.99</span>
-                        <span class="price">$199.99</span>
-                    </div>
-                    
-                    <a href="#" class="btn btn-primary">Shop Now</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Newsletter -->
-    <section class="newsletter">
-        <div class="container">
-            <h2>Subscribe to Our Newsletter</h2>
-            <p>Get timely updates from your favorite products and special offers.</p>
-            <div class="newsletter-form">
-                <input type="email" placeholder="Your email address">
-                <button type="submit">Subscribe</button>
-            </div>
-        </div>
-    </section>
-
-    <!-- Testimonials -->
-    <section class="section testimonials">
-        <div class="container">
-            <div class="section-header">
-                <h2>What Our Customers Say</h2>
-            </div>
-            <div class="testimonial-grid">
-                <!-- Testimonial 1 -->
-                <div class="testimonial-card">
-                    <div class="testimonial-text">
-                        I've been shopping here for years and the quality of products never disappoints. The customer service is outstanding too!
-                    </div>
-                    <div class="testimonial-author">
-                        <div class="author-image">
-                            <img src="/api/placeholder/50/50" alt="Author 1">
-                        </div>
-                        <div class="author-info">
-                            <h4>Sarah Johnson</h4>
-                            <p>Regular Customer</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Testimonial 2 -->
-                <div class="testimonial-card">
-                    <div class="testimonial-text">
-                        Fast shipping and secure packaging. I received my order in perfect condition and much faster than expected.
-                    </div>
-                    <div class="testimonial-author">
-                        <div class="author-image">
-                            <img src="/api/placeholder/50/50" alt="Author 2">
-                        </div>
-                        <div class="author-info">
-                            <h4>Michael Brown</h4>
-                            <p>Verified Buyer</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Testimonial 3 -->
-                <div class="testimonial-card">
-                    <div class="testimonial-text">
-                        The variety of products is amazing. I always find exactly what I'm looking for at reasonable prices.
-                    </div>
-                    <div class="testimonial-author">
-                        <div class="author-image">
-                            <img src="/api/placeholder/50/50" alt="Author 3">
-                        </div>
-                        <div class="author-info">
-                            <h4>Emma Wilson</h4>
-                            <p>Loyal Customer</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <!-- About -->
-                <div class="footer-column">
-                    <h3>About Us</h3>
-                    <p>ShopEase is your one-stop destination for all your shopping needs. We offer high-quality products at competitive prices with exceptional customer service.</p>
-                    <div class="social-icons">
-                        <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
-                        <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
-                        <a href="#" class="social-icon"><i class="fab fa-pinterest"></i></a>
-                    </div>
-                </div>
-                
-                <!-- Quick Links -->
-                <div class="footer-column">
-                    <h3>Quick Links</h3>
-                    <ul class="footer-links">
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#">Shop</a></li>
-                        <li><a href="#">About Us</a></li>
-                        <li><a href="#">Contact</a></li>
-                        <li><a href="#">FAQs</a></li>
-                        <li><a href="#">Privacy Policy</a></li>
-                    </ul>
-                </div>
-                
-                <!-- Customer Service -->
-                <div class="footer-column">
-                    <h3>Customer Service</h3>
-                    <ul class="footer-links">
-                        <li><a href="#">My Account</a></li>
-                        <li><a href="#">Order Tracking</a></li>
-                        <li><a href="#">Wishlist</a></li>
-                        <li><a href="#">Shipping Info</a></li>
-                        <li><a href="#">Returns</a></li>
-                        <li><a href="#">Help Center</a></li>
-                    </ul>
-                </div>
-                
-                <!-- Contact Info -->
-                <div class="footer-column">
-                    <h3>Contact Us</h3>
-                    <ul class="contact-info footer-links">
-                        <li><i class="fas fa-map-marker-alt"></i> 123 Commerce St, New York, NY 10001</li>
-                        <li><i class="fas fa-phone"></i> +1 234 567 890</li>
-                        <li><i class="fas fa-envelope"></i> info@shopease.com</li>
-                        <li><i class="fas fa-clock"></i> Monday-Friday: 9am-8pm</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <div class="footer-bottom">
+        <section class="section section--surface">
             <div class="container">
-                <p>&copy; 2025 ShopEase. All Rights Reserved. | Designed with <i class="fas fa-heart"></i> for shopping enthusiasts</p>
-            </div>
-        </div>
-    </footer>
+                <div class="newsletter-panel">
+                    <div>
+                        <span class="section-kicker">Stay updated</span>
+                        <h2>Subscribe for weekly deals.</h2>
+                        <p>Use the newsletter area to capture leads and keep the design fresh without clutter.</p>
+                    </div>
 
-    <script>
-        // Simple JavaScript for the countdown timer
-        function updateTimer() {
-            const endDate = new Date();
-            endDate.setDate(endDate.getDate() + 8);
-            endDate.setHours(endDate.getHours() + 17);
-            endDate.setMinutes(endDate.getMinutes() + 42);
-            endDate.setSeconds(endDate.getSeconds() + 15);
-            
-            const now = new Date();
-            const diff = endDate - now;
-            
-            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-            
-            document.querySelector('.timer-box:nth-child(1) .time').textContent = days.toString().padStart(2, '0');
-            document.querySelector('.timer-box:nth-child(2) .time').textContent = hours.toString().padStart(2, '0');
-            document.querySelector('.timer-box:nth-child(3) .time').textContent = minutes.toString().padStart(2, '0');
-            document.querySelector('.timer-box:nth-child(4) .time').textContent = seconds.toString().padStart(2, '0');
-        }
-        
-        // Update the timer every second
-        setInterval(updateTimer, 1000);
-        
-        // Mobile menu toggle functionality
-        document.querySelector('.hamburger').addEventListener('click', function() {
-            const navLinks = document.querySelector('.nav-links');
-            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
-        });
-        
-        // Product hover effect for mobile (touch)
-        document.querySelectorAll('.product-card').forEach(card => {
-            card.addEventListener('touchstart', function() {
-                const icons = this.querySelector('.product-icons');
-                icons.style.opacity = '1';
-                icons.style.transform = 'translateX(0)';
-            });
-        });
-    </script>
+                    <div class="newsletter-form" role="form" aria-label="Newsletter signup">
+                        <input type="email" placeholder="Enter your email address" aria-label="Email address">
+                        <button type="button">Subscribe</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section section--muted" id="reviews">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-kicker">Social proof</span>
+                    <h2>What Customers Say</h2>
+                    <p>Testimonials are set up as compact cards with avatars, readable text, and enough contrast for desktop use.</p>
+                </div>
+
+                <div class="testimonial-grid">
+                    <article class="testimonial-card">
+                        <p class="testimonial-quote">
+                            I can find essentials faster, and the layout feels much more premium than a standard ecommerce template.
+                        </p>
+                        <div class="testimonial-author">
+                            <div class="testimonial-avatar">SJ</div>
+                            <div>
+                                <h4>Sarah Johnson</h4>
+                                <p>Regular Customer</p>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="testimonial-card">
+                        <p class="testimonial-quote">
+                            The product cards are clean, the sections are easy to scan, and the whole page feels modern on my laptop.
+                        </p>
+                        <div class="testimonial-author">
+                            <div class="testimonial-avatar">MB</div>
+                            <div>
+                                <h4>Michael Brown</h4>
+                                <p>Verified Buyer</p>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="testimonial-card">
+                        <p class="testimonial-quote">
+                            Quick commerce energy, but with a calmer and more professional look. Exactly the style I wanted for this project.
+                        </p>
+                        <div class="testimonial-author">
+                            <div class="testimonial-avatar">EW</div>
+                            <div>
+                                <h4>Emma Wilson</h4>
+                                <p>Loyal Customer</p>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    @include('layouts.footer')
+
+    <script src="{{ asset('js/common.js') }}" defer></script>
 </body>
 </html>

@@ -1,237 +1,70 @@
-<!-- File: resources/views/auth/login.blade.php -->
 @extends('layouts.app')
 
 @section('title', 'Login - ShopEase')
 
-@section('styles')
-<style>
-    .auth-container {
-        max-width: 700px;
-        margin: 40px auto;
-        padding: 40px;
-        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-        border-radius: 10px;
-        background: #fff;
-    }
-
-    .auth-header {
-        text-align: center;
-        margin-bottom: 30px;
-    }
-
-    .auth-header h1 {
-        color: #333;
-        font-size: 28px;
-        margin-bottom: 10px;
-    }
-
-    .auth-header p {
-        color: #777;
-        font-size: 16px;
-    }
-
-    .form-group {
-        margin-bottom: 25px;
-    }
-
-    .form-group label {
-        display: block;
-        margin-bottom: 8px;
-        font-weight: 500;
-        color: #555;
-    }
-
-    .form-control {
-        width: 100%;
-        padding: 12px 15px;
-        border: 1px solid #ddd;
-        border-radius: 5px;
-        font-size: 16px;
-        transition: border-color 0.3s;
-    }
-
-    .form-control:focus {
-        border-color: #4e0763;
-        outline: none;
-        box-shadow: 0 0 0 2px rgba(255, 107, 107, 0.2);
-    }
-
-    .btn-auth {
-        width: 100%;
-        padding: 14px;
-        background: linear-gradient(90deg, var(--primary), var(--accent1));
-        border: none;
-        border-radius: 5px;
-        color: white;
-        font-size: 16px;
-        font-weight: 600;
-        cursor: pointer;
-        transition: background 0.3s;
-    }
-
-    .btn-auth:hover {
-        background: #ff5252;
-    }
-
-    .auth-footer {
-        text-align: center;
-        margin-top: 25px;
-        padding-top: 20px;
-        border-top: 1px solid #eee;
-    }
-
-    .auth-footer a {
-        color: #ff6b6b;
-        text-decoration: none;
-        font-weight: 500;
-    }
-
-    .auth-footer a:hover {
-        text-decoration: underline;
-    }
-
-    .remember-me {
-        display: flex;
-        align-items: center;
-        margin-bottom: 20px;
-    }
-
-    .remember-me input {
-        margin-right: 10px;
-    }
-
-    .social-login {
-        margin-top: 30px;
-    }
-
-    .social-login p {
-        text-align: center;
-        position: relative;
-        margin-bottom: 20px;
-    }
-
-    .social-login p:before {
-        content: "";
-        position: absolute;
-        top: 50%;
-        left: 0;
-        right: 0;
-        height: 1px;
-        background: #eee;
-        z-index: 1;
-    }
-
-    .social-login p span {
-        display: inline-block;
-        background: #fff;
-        padding: 0 15px;
-        position: relative;
-        z-index: 2;
-        color: #777;
-    }
-
-    .social-buttons {
-        display: flex;
-        justify-content: center;
-        gap: 15px;
-    }
-
-    .social-btn {
-        padding: 12px 20px;
-        border-radius: 5px;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-weight: 500;
-        color: white;
-        text-decoration: none;
-        transition: opacity 0.3s;
-    }
-
-    .social-btn:hover {
-        opacity: 0.9;
-    }
-
-    .social-btn i {
-        margin-right: 10px;
-    }
-
-    .btn-facebook {
-        background: #3b5998;
-    }
-
-    .btn-google {
-        background: #dd4b39;
-    }
-
-    .auth-container .logo {
-        text-align: center;
-        font-size: 32px;
-        margin-bottom: 20px;
-        color: #333;
-    }
-
-    .auth-container .logo span {
-        color: #ff6b6b;
-    }
-
-    .forgot-password {
-        display: block;
-        text-align: right;
-        font-size: 14px;
-        color: #777;
-        margin-top: 8px;
-        margin-bottom: 20px;
-    }
-
-    .forgot-password:hover {
-        color: #ff6b6b;
-    }
-
-    .password-group {
-        position: relative;
-    }
-
-    .password-group .form-control {
-        padding-right: 45px;
-    }
-
-    .password-toggle-btn {
-        position: absolute;
-        top: 50%;
-        right: 12px;
-        transform: translateY(-50%);
-        border: none;
-        background: transparent;
-        color: #777;
-        cursor: pointer;
-        padding: 0;
-        width: 30px;
-        height: 30px;
-    }
-
-    .password-toggle-btn:hover {
-        color: #ff6b6b;
-    }
-</style>
-@endsection
-
 @section('content')
-<div class="container">
-    <div class="auth-container">
-        <div class="auth-header">
-            <div class="logo">Shop<span>Ease</span></div>
-            <h1>Welcome Back</h1>
-            <p>Sign in to your account to continue</p>
+<div class="auth-card">
+    <section class="auth-hero auth-hero--login">
+        <a href="{{ url('/') }}" class="auth-brand" aria-label="ShopEase home">
+            <span class="auth-brand__icon">
+                <img src="{{ asset('images/home/shopease-favicon.svg') }}" alt="ShopEase">
+            </span>
+            <span>
+                <span class="auth-brand__title">Shop<span>Ease</span></span>
+                <span class="auth-brand__subtitle">Your quick commerce storefront</span>
+            </span>
+        </a>
+
+        <h1 class="auth-hero__title">Welcome back.</h1>
+        <p class="auth-hero__text">
+            Sign in to continue shopping with faster checkout, cleaner navigation, and a polished ecommerce experience.
+        </p>
+
+        <div class="auth-highlights">
+            <div class="auth-highlight">
+                <strong>Fast checkout</strong>
+                <span>Keep returning customers moving with less friction.</span>
+            </div>
+
+            <div class="auth-highlight">
+                <strong>Daily deals</strong>
+                <span>Promote fresh offers with a premium visual presentation.</span>
+            </div>
+
+            <div class="auth-highlight">
+                <strong>Secure access</strong>
+                <span>Keep the login flow simple and consistent across devices.</span>
+            </div>
+
+            <div class="auth-highlight">
+                <strong>Responsive</strong>
+                <span>Looks sharp on laptops, Windows screens, and smaller displays.</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="auth-panel">
+        <div class="auth-panel__header">
+            <span class="section-kicker">Sign in</span>
+            <h1>Login to your account</h1>
+            <p>Use your username and password to continue.</p>
         </div>
 
-        <form method="POST" action="{{ route('login.submit') }}">
+        <form method="POST" action="{{ route('login.submit') }}" class="auth-form">
             @csrf
 
             <div class="form-group">
                 <label for="user_name">Username</label>
-                <input type="user_name" class="form-control @error('user_name') is-invalid @enderror" id="user_name" name="user_name" value="{{ old('user_name') }}" required autocomplete="user_name" autofocus>
+                <input
+                    type="text"
+                    class="form-control @error('user_name') is-invalid @enderror"
+                    id="user_name"
+                    name="user_name"
+                    value="{{ old('user_name') }}"
+                    required
+                    autocomplete="username"
+                    autofocus
+                >
                 @error('user_name')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
@@ -242,9 +75,22 @@
             <div class="form-group">
                 <label for="password">Password</label>
                 <div class="password-group">
-                    <input type="password" class="form-control @error('password') is-invalid @enderror" id="password" name="password" required autocomplete="current-password">
-                    <button type="button" id="togglePasswordBtn" class="password-toggle-btn" aria-label="Show password">
-                        <i class="fa-solid fa-eye" id="passwordIcon"></i>
+                    <input
+                        type="password"
+                        class="form-control @error('password') is-invalid @enderror"
+                        id="password"
+                        name="password"
+                        required
+                        autocomplete="current-password"
+                    >
+                    <button
+                        type="button"
+                        class="password-toggle-btn"
+                        data-toggle-password
+                        data-target="#password"
+                        aria-label="Show password"
+                    >
+                        <i class="fa-solid fa-eye"></i>
                     </button>
                 </div>
                 @error('password')
@@ -252,7 +98,6 @@
                         <strong>{{ $message }}</strong>
                     </span>
                 @enderror
-                <a href="" class="forgot-password">Forgot Password?</a>
             </div>
 
             <div class="remember-me">
@@ -260,46 +105,28 @@
                 <label for="remember">Remember me</label>
             </div>
 
-            <button type="submit" class="btn-auth">Sign In</button>
+            <a href="#" class="forgot-password">Forgot Password?</a>
+
+            <div class="auth-actions">
+                <button type="submit" class="btn btn-auth">Sign In</button>
+            </div>
 
             <div class="social-login">
                 <p><span>Or sign in with</span></p>
                 <div class="social-buttons">
                     <a href="#" class="social-btn btn-facebook">
-                        <i class="fab fa-facebook-f"></i> Facebook
+                        <i class="fab fa-facebook-f me-2"></i> Facebook
                     </a>
                     <a href="#" class="social-btn btn-google">
-                        <i class="fab fa-google"></i> Google
+                        <i class="fab fa-google me-2"></i> Google
                     </a>
                 </div>
             </div>
 
             <div class="auth-footer">
-                Don't have an account? <a href="{{ route('register') }}">Sign Up</a>
+                Don't have an account? <a href="{{ route('register') }}">Create one</a>
             </div>
         </form>
-    </div>
+    </section>
 </div>
-@endsection
-
-@section('scripts')
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const passwordInput = document.getElementById('password');
-        const toggleButton = document.getElementById('togglePasswordBtn');
-        const passwordIcon = document.getElementById('passwordIcon');
-
-        if (!passwordInput || !toggleButton || !passwordIcon) {
-            return;
-        }
-
-        toggleButton.addEventListener('click', function () {
-            const isHidden = passwordInput.type === 'password';
-            passwordInput.type = isHidden ? 'text' : 'password';
-            passwordIcon.classList.toggle('fa-eye', !isHidden);
-            passwordIcon.classList.toggle('fa-eye-slash', isHidden);
-            toggleButton.setAttribute('aria-label', isHidden ? 'Hide password' : 'Show password');
-        });
-    });
-</script>
 @endsection

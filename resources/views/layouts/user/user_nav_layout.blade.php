@@ -1,29 +1,47 @@
 @extends('layouts.main_layout')
 
 @section('nav_layout')
-<div class="sidebar" style="background: linear-gradient(180deg, #ffffff 0%, #f0f7ff 100%);">
-    <div class="d-flex align-items-center mb-4 px-3">
-        <i class="bi bi-bag-heart-fill text-primary fs-3 me-2"></i>
-        <h4 class="fw-bold m-0" style="color: #2b3a4a;">MyStore</h4>
+<aside class="sidebar sidebar--user">
+    <div class="sidebar-brand">
+        <span class="sidebar-brand__icon">
+            <i class="fa-solid fa-bag-shopping"></i>
+        </span>
+
+        <div class="sidebar-brand__copy">
+            <div class="sidebar-brand__title">Shop<span>Ease</span></div>
+            <div class="sidebar-brand__subtitle">Customer portal</div>
+        </div>
     </div>
-    
-    <nav class="nav flex-column">
+
+    <div class="sidebar-section-label">Main menu</div>
+    <nav class="sidebar-nav">
         <a class="nav-link active" href="#"><i class="bi bi-house-door"></i> Home</a>
-        <a class="nav-link" href="#"><i class="bi bi-collection"></i> Categories</a>
+        <a class="nav-link" href="#"><i class="bi bi-grid-1x2"></i> Categories</a>
         <a class="nav-link" href="#"><i class="bi bi-heart"></i> Wishlist</a>
         <a class="nav-link" href="#"><i class="bi bi-person-circle"></i> Edit Profile</a>
         <a class="nav-link" href="#"><i class="bi bi-clock-history"></i> Order History</a>
     </nav>
-</div>
+</aside>
 
-<header class="top-navbar d-flex justify-content-between align-items-center">
-    <div class="fw-medium">Welcome back, <span class="text-primary fw-bold">Alex!</span></div>
-    <div class="d-flex align-items-center gap-4">
-        <div class="position-relative">
-            <i class="bi bi-cart3 fs-4"></i>
-            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">3</span>
+<header class="top-navbar">
+    <div class="top-navbar__title">
+        Welcome back, <span>{{ session('user_name', 'Alex') }}</span>
+    </div>
+
+    <div class="top-navbar__actions">
+        <label class="dashboard-search">
+            <i class="bi bi-search"></i>
+            <input type="search" placeholder="Search orders, products..." aria-label="Search dashboard">
+        </label>
+
+        <button type="button" class="icon-button" aria-label="Cart">
+            <i class="bi bi-cart3"></i>
+            <span class="icon-badge">3</span>
+        </button>
+
+        <div class="avatar-chip">
+            {{ strtoupper(substr(session('user_name', 'Alex'), 0, 1)) }}
         </div>
-        <img src="https://ui-avatars.com/api/?name=User" class="rounded-circle border" width="40">
     </div>
 </header>
 
