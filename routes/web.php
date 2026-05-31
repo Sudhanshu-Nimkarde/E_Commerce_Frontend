@@ -70,7 +70,7 @@ Route::post('/logout', [AuthController::class, 'logout'])
 
 Route::middleware(['frontend.auth:Admin', 'check.token'])->group(function () {
 
-    Route::get('/admin/dashboard', [DashboardController::class, 'adminDashboard'])
+    Route::get('/admin/dashboard', [CustomerDashboardController::class, 'adminDashboard'])
         ->name('admin.dashboard');
 });
 
@@ -83,7 +83,7 @@ Route::middleware(['frontend.auth:Admin', 'check.token'])->group(function () {
 
 Route::middleware(['frontend.auth:Shopkeeper', 'check.token'])->group(function () {
 
-    Route::get('/shopkeeper/dashboard', [DashboardController::class, 'shopkeeperDashboard'])
+    Route::get('/shopkeeper/dashboard', [CustomerDashboardController::class, 'shopkeeperDashboard'])
         ->name('shopkeeper.dashboard');
 });
 
@@ -96,7 +96,7 @@ Route::middleware(['frontend.auth:Shopkeeper', 'check.token'])->group(function (
 
 Route::middleware(['frontend.auth:Customer', 'check.token'])->group(function () {
 
-    Route::get('/customer/dashboard', [CustomerDashboardController::class, 'index'])
+    Route::get('/customer/dashboard', [CustomerDashboardController::class, 'customerDashboard'])
         ->name('customer.dashboard');
 });
 
