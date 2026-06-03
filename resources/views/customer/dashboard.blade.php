@@ -1,113 +1,177 @@
-@extends('layouts.user.user_nav_layout')
+@extends('layouts.customer.app')
 
 @section('title', 'Customer Dashboard - ShopEase')
 
-@section('main_content')
-<div class="dashboard-hero mb-4">
-    <div class="row g-4 align-items-center">
-        <div class="col-lg-7 dashboard-hero__copy">
+@section('customer_content')
+@php
+    $heroStats = [
+        ['label' => 'Active orders', 'value' => '4', 'meta' => '2 out for delivery'],
+        ['label' => 'Wishlist items', 'value' => '18', 'meta' => '6 new this week'],
+        ['label' => 'Reward points', 'value' => '1,420', 'meta' => 'Ready to redeem'],
+        ['label' => 'Open tickets', 'value' => '2', 'meta' => 'Both under SLA'],
+    ];
+
+    $shortcuts = [
+        ['title' => 'Track order', 'meta' => 'Follow the live delivery ladder', 'icon' => 'bi-truck', 'route' => route('customer.track.order')],
+        ['title' => 'Browse products', 'meta' => 'Jump back into shopping mode', 'icon' => 'bi-shop', 'route' => route('customer.products')],
+        ['title' => 'Wishlist', 'meta' => 'Revisit saved items and offers', 'icon' => 'bi-heart', 'route' => route('customer.wishlist')],
+        ['title' => 'Support', 'meta' => 'Create or reply to a ticket', 'icon' => 'bi-life-preserver', 'route' => route('customer.support.tickets')],
+    ];
+
+    $trendingProducts = [
+        ['name' => 'Noise Cancelling Headphones', 'price' => '₹4,999', 'rating' => '4.8', 'tag' => 'Bestseller'],
+        ['name' => 'Smart Watch Series 5', 'price' => '₹7,299', 'rating' => '4.7', 'tag' => 'New arrival'],
+        ['name' => 'Home Security Camera', 'price' => '₹3,499', 'rating' => '4.6', 'tag' => 'Popular'],
+    ];
+
+    $recentOrders = [
+        ['id' => '#ORD-2048', 'name' => 'Groceries and daily essentials', 'status' => 'Out for delivery', 'eta' => 'Today, 6:30 PM'],
+        ['id' => '#ORD-2042', 'name' => 'Weekend electronics bundle', 'status' => 'Packed', 'eta' => 'Tomorrow'],
+        ['id' => '#ORD-2031', 'name' => 'Kitchen accessories set', 'status' => 'Delivered', 'eta' => 'Jan 12, 2026'],
+    ];
+@endphp
+
+<div class="customer-page__container">
+    <section class="customer-hero">
+        <div class="customer-hero__copy">
             <span class="section-kicker">Customer dashboard</span>
-            <h1 class="mt-3">Track orders, revisit categories, and keep shopping moving.</h1>
-            <p class="mt-3 mb-0">
-                This dashboard pairs a clean content hierarchy with quick-access cards so the interface feels more like a modern commerce app.
+            <h1>Shop, track, and support everything from one polished workspace.</h1>
+            <p>
+                The customer portal keeps shopping friction low with clear modules for My Account, Orders, Returns,
+                Reviews, and Support. It feels fast, premium, and ready for API integration later.
             </p>
 
-            <div class="dashboard-hero__actions">
-                <a href="#" class="btn btn-light">Start Shopping</a>
-                <a href="#" class="btn btn-outline-primary">Track Orders</a>
+            <div class="customer-hero__actions">
+                <a href="{{ route('customer.products') }}" class="btn btn-primary">Start shopping</a>
+                <a href="{{ route('customer.orders') }}" class="btn btn-light">View orders</a>
+            </div>
+
+            <div class="customer-hero__meta">
+                <div class="customer-hero__meta-card">
+                    <strong>Next delivery</strong>
+                    <span>Today, 6:30 PM</span>
+                </div>
+                <div class="customer-hero__meta-card">
+                    <strong>Role ID</strong>
+                    <span>{{ $customerRoleId ?? 3 }}</span>
+                </div>
+                <div class="customer-hero__meta-card">
+                    <strong>Session</strong>
+                    <span>Secure and active</span>
+                </div>
             </div>
         </div>
 
-        <div class="col-lg-5 dashboard-hero__visual">
-            <img src="{{ asset('images/home/home-main.jpg') }}" class="img-fluid rounded-4 shadow" alt="Fresh groceries and essentials">
+        <div class="customer-hero__visual">
+            <div class="customer-hero__visual-card customer-hero__visual-card--primary">
+                <span class="customer-hero__visual-label">Live order</span>
+                <strong>Groceries and daily essentials</strong>
+                <p>Driver is 12 minutes away. Keep tracking without leaving the dashboard.</p>
+            </div>
+
+            <div class="customer-hero__visual-card-row">
+                <div class="customer-hero__visual-card">
+                    <span class="customer-hero__visual-label">Wishlist</span>
+                    <strong>18 items</strong>
+                    <p>Saved across gadgets, home, and lifestyle.</p>
+                </div>
+
+                <div class="customer-hero__visual-card customer-hero__visual-card--dark">
+                    <span class="customer-hero__visual-label">Rewards</span>
+                    <strong>1,420 points</strong>
+                    <p>Use points for your next checkout.</p>
+                </div>
+            </div>
+
+            <img src="{{ asset('images/home/home-main.jpg') }}" alt="Customer shopping inspiration" class="customer-hero__image">
         </div>
-    </div>
-</div>
+    </section>
 
-<div class="dashboard-kpi-grid mb-4">
-    <div class="metric-card">
-        <div class="metric-label">Total Orders</div>
-        <div class="metric-value">24</div>
-    </div>
-    <div class="metric-card">
-        <div class="metric-label">Pending Deliveries</div>
-        <div class="metric-value">3</div>
-    </div>
-    <div class="metric-card">
-        <div class="metric-label">Wishlist Items</div>
-        <div class="metric-value">12</div>
-    </div>
-    <div class="metric-card">
-        <div class="metric-label">Reward Points</div>
-        <div class="metric-value">1,420</div>
-    </div>
-</div>
+    <section class="customer-stat-grid">
+        @foreach ($heroStats as $stat)
+            <article class="customer-stat-card">
+                <span class="customer-stat-card__label">{{ $stat['label'] }}</span>
+                <strong>{{ $stat['value'] }}</strong>
+                <span class="customer-stat-card__meta">{{ $stat['meta'] }}</span>
+            </article>
+        @endforeach
+    </section>
 
-<div class="section-header section-header--left mt-5">
-    <span class="section-kicker">Quick access</span>
-    <h2>Featured Categories</h2>
-    <p>Use a 4-up tile layout to surface the most useful collections in the customer area.</p>
-</div>
-
-<div class="dashboard-category-grid mb-4">
-    <div class="dashboard-category">
-        <i class="bi bi-lightning-charge"></i>
-        <h6>Electronics</h6>
-        <p>Fast moving gadgets</p>
-    </div>
-
-    <div class="dashboard-category">
-        <i class="bi bi-bag-heart"></i>
-        <h6>Wearables</h6>
-        <p>Daily smart essentials</p>
-    </div>
-
-    <div class="dashboard-category">
-        <i class="bi bi-headphones"></i>
-        <h6>Audio</h6>
-        <p>Sound and accessories</p>
-    </div>
-
-    <div class="dashboard-category">
-        <i class="bi bi-house-heart"></i>
-        <h6>Home Office</h6>
-        <p>Work-from-home upgrades</p>
-    </div>
-</div>
-
-<div class="f-card p-4">
-    <div class="d-flex justify-content-between align-items-center mb-3">
-        <div>
-            <h5 class="fw-bold mb-1">Recent Activity</h5>
-            <p class="text-muted mb-0">Latest order updates and customer interactions.</p>
-        </div>
-        <a href="#" class="btn btn-outline-primary btn-sm">View All</a>
-    </div>
-
-    <div class="dashboard-list">
-        <div class="dashboard-list__item">
+    <section class="customer-section">
+        <div class="customer-section__header">
             <div>
-                <h6 class="dashboard-list__title">Fresh Produce Box</h6>
-                <div class="dashboard-list__meta">Ordered on Jan 12, 2026</div>
+                <span class="section-kicker">Quick actions</span>
+                <h2>Everything you use most is one tap away.</h2>
             </div>
-            <span class="badge bg-success-subtle text-success rounded-pill px-3 py-2">Delivered</span>
+            <a href="{{ route('customer.products') }}" class="btn btn-outline-primary btn-sm">Browse products</a>
         </div>
 
-        <div class="dashboard-list__item">
-            <div>
-                <h6 class="dashboard-list__title">Weekend Snack Bundle</h6>
-                <div class="dashboard-list__meta">Ordered on Jan 15, 2026</div>
-            </div>
-            <span class="badge bg-warning-subtle text-warning rounded-pill px-3 py-2">Processing</span>
+        <div class="customer-shortcut-grid">
+            @foreach ($shortcuts as $shortcut)
+                <a href="{{ $shortcut['route'] }}" class="customer-shortcut-card">
+                    <span class="customer-shortcut-card__icon">
+                        <i class="bi {{ $shortcut['icon'] }}"></i>
+                    </span>
+                    <strong>{{ $shortcut['title'] }}</strong>
+                    <span>{{ $shortcut['meta'] }}</span>
+                </a>
+            @endforeach
         </div>
+    </section>
 
-        <div class="dashboard-list__item">
-            <div>
-                <h6 class="dashboard-list__title">Home Essentials Kit</h6>
-                <div class="dashboard-list__meta">Saved to wishlist</div>
+    <div class="customer-grid customer-grid--2">
+        <section class="customer-panel">
+            <div class="customer-panel__header">
+                <div>
+                    <span class="section-kicker">Trending now</span>
+                    <h3>Products with the most attention this week.</h3>
+                </div>
+                <a href="{{ route('customer.products') }}" class="btn btn-outline-primary btn-sm">All products</a>
             </div>
-            <span class="badge bg-primary-subtle text-primary rounded-pill px-3 py-2">Saved</span>
-        </div>
+
+            <div class="customer-product-list customer-product-list--compact">
+                @foreach ($trendingProducts as $product)
+                    <article class="customer-product-mini">
+                        <div class="customer-product-mini__media">
+                            <i class="bi bi-box-seam"></i>
+                        </div>
+                        <div class="customer-product-mini__body">
+                            <strong>{{ $product['name'] }}</strong>
+                            <div class="customer-product-mini__meta">
+                                <span>{{ $product['price'] }}</span>
+                                <span><i class="bi bi-star-fill"></i> {{ $product['rating'] }}</span>
+                                <span>{{ $product['tag'] }}</span>
+                            </div>
+                        </div>
+                    </article>
+                @endforeach
+            </div>
+        </section>
+
+        <section class="customer-panel">
+            <div class="customer-panel__header">
+                <div>
+                    <span class="section-kicker">Recent orders</span>
+                    <h3>Track the latest movement without opening multiple screens.</h3>
+                </div>
+                <a href="{{ route('customer.track.order') }}" class="btn btn-outline-primary btn-sm">Track order</a>
+            </div>
+
+            <div class="customer-order-list">
+                @foreach ($recentOrders as $order)
+                    <article class="customer-order-card">
+                        <div>
+                            <strong>{{ $order['id'] }}</strong>
+                            <span>{{ $order['name'] }}</span>
+                        </div>
+                        <div class="customer-order-card__meta">
+                            <span class="customer-status-pill">{{ $order['status'] }}</span>
+                            <small>{{ $order['eta'] }}</small>
+                        </div>
+                    </article>
+                @endforeach
+            </div>
+        </section>
     </div>
 </div>
 @endsection

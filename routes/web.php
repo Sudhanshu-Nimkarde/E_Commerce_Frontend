@@ -94,10 +94,62 @@ Route::middleware(['frontend.auth:Shopkeeper', 'check.token'])->group(function (
 |--------------------------------------------------------------------------
 */
 
-Route::middleware(['frontend.auth:Customer', 'check.token'])->group(function () {
+Route::middleware(['frontend.auth:Customer', 'check.token'])
+    ->prefix('customer')
+    ->name('customer.')
+    ->group(function () {
 
-    Route::get('/customer/dashboard', [CustomerDashboardController::class, 'customerDashboard'])
-        ->name('customer.dashboard');
+        Route::get('/', function () {
+            return redirect('/customer/dashboard');
+        })->name('home');
+
+        Route::get('/dashboard', [CustomerDashboardController::class, 'customerDashboard'])
+            ->name('dashboard');
+
+        Route::get('/profile', [CustomerDashboardController::class, 'profile'])
+            ->name('profile');
+
+        Route::get('/addresses', [CustomerDashboardController::class, 'addresses'])
+            ->name('addresses');
+
+        Route::get('/products', [CustomerDashboardController::class, 'products'])
+            ->name('products');
+
+        Route::get('/product-detail', [CustomerDashboardController::class, 'productDetail'])
+            ->name('product.detail');
+
+        Route::get('/categories', [CustomerDashboardController::class, 'categories'])
+            ->name('categories');
+
+        Route::get('/compare', [CustomerDashboardController::class, 'compare'])
+            ->name('compare');
+
+        Route::get('/wishlist', [CustomerDashboardController::class, 'wishlist'])
+            ->name('wishlist');
+
+        Route::get('/cart', [CustomerDashboardController::class, 'cart'])
+            ->name('cart');
+
+        Route::get('/orders', [CustomerDashboardController::class, 'orders'])
+            ->name('orders');
+
+        Route::get('/order-detail', [CustomerDashboardController::class, 'orderDetail'])
+            ->name('order.detail');
+
+        Route::get('/track-order', [CustomerDashboardController::class, 'trackOrder'])
+            ->name('track.order');
+
+        Route::get('/returns', [CustomerDashboardController::class, 'returns'])
+            ->name('returns');
+
+        Route::get('/reviews', [CustomerDashboardController::class, 'reviews'])
+            ->name('reviews');
+
+        Route::get('/support-tickets', [CustomerDashboardController::class, 'supportTickets'])
+            ->name('support.tickets');
+
+        Route::get('/complaints', [CustomerDashboardController::class, 'complaints'])
+            ->name('complaints');
 });
 
 
