@@ -1,6 +1,13 @@
 (function () {
     document.addEventListener('DOMContentLoaded', function () {
         initMobileMenu();
+        initCustomerSidebar();
+        initCustomerDropdown();
+        initCustomerFilterChips();
+        initCustomerTabs();
+        initCustomerGallery();
+        initCustomerImagePreview();
+        initCustomerRatingGroups();
         initCountdownTimers();
         initPasswordToggles();
         initRegisterForm();
@@ -38,6 +45,259 @@
             if (window.innerWidth >= 992) {
                 closeMenu();
             }
+        });
+    }
+
+    function initCustomerSidebar() {
+        const shell = document.querySelector('[data-customer-shell]');
+        const sidebar = document.querySelector('[data-customer-sidebar]');
+        const toggleButton = document.querySelector('[data-customer-sidebar-toggle]');
+        const backdrop = document.querySelector('[data-customer-sidebar-overlay]');
+
+        if (!shell || !sidebar || !toggleButton || !backdrop) {
+            return;
+        }
+
+        const closeShell = function () {
+            shell.classList.remove('is-sidebar-open');
+            toggleButton.setAttribute('aria-expanded', 'false');
+            document.body.style.overflow = '';
+        };
+
+        const openShell = function () {
+            shell.classList.add('is-sidebar-open');
+            toggleButton.setAttribute('aria-expanded', 'true');
+            document.body.style.overflow = 'hidden';
+        };
+
+        toggleButton.addEventListener('click', function () {
+            if (shell.classList.contains('is-sidebar-open')) {
+                closeShell();
+                return;
+            }
+
+            openShell();
+        });
+
+        backdrop.addEventListener('click', closeShell);
+
+        sidebar.querySelectorAll('a, button[data-customer-sidebar-close]').forEach(function (item) {
+            item.addEventListener('click', function () {
+                if (window.innerWidth < 992) {
+                    closeShell();
+                }
+            });
+        });
+
+        window.addEventListener('keydown', function (event) {
+            if (event.key === 'Escape') {
+                closeShell();
+            }
+        });
+
+        window.addEventListener('resize', function () {
+            if (window.innerWidth >= 992) {
+                closeShell();
+            }
+        });
+    }
+
+    function initCustomerDropdown() {
+        const dropdowns = document.querySelectorAll('[data-customer-dropdown]');
+
+        if (!dropdowns.length) {
+            return;
+        }
+
+        const closeAllDropdowns = function (exceptDropdown) {
+            dropdowns.forEach(function (dropdown) {
+                if (dropdown !== exceptDropdown) {
+                    dropdown.classList.remove('is-open');
+                    const trigger = dropdown.querySelector('[data-customer-dropdown-toggle]');
+                    if (trigger) {
+                        trigger.setAttribute('aria-expanded', 'false');
+                    }
+                }
+            });
+        };
+
+        dropdowns.forEach(function (dropdown) {
+            const trigger = dropdown.querySelector('[data-customer-dropdown-toggle]');
+
+            if (!trigger) {
+                return;
+            }
+
+            trigger.addEventListener('click', function (event) {
+                event.stopPropagation();
+
+                const isOpen = dropdown.classList.contains('is-open');
+                closeAllDropdowns(dropdown);
+
+                dropdown.classList.toggle('is-open', !isOpen);
+                trigger.setAttribute('aria-expanded', String(!isOpen));
+            });
+
+            dropdown.querySelectorAll('.customer-dropdown__menu a, .customer-dropdown__menu button').forEach(function (item) {
+                item.addEventListener('click', function () {
+                    closeAllDropdowns();
+                });
+            });
+        });
+
+        document.addEventListener('click', function (event) {
+            if (!event.target.closest('[data-customer-dropdown]')) {
+                closeAllDropdowns();
+            }
+        });
+
+        window.addEventListener('keydown', function (event) {
+            if (event.key === 'Escape') {
+                closeAllDropdowns();
+            }
+        });
+    }
+
+    function initCustomerFilterChips() {
+        document.querySelectorAll('[data-filter-chip]').forEach(function (chip) {
+            chip.addEventListener('click', function () {
+                chip.classList.toggle('is-active');
+            });
+        });
+    }
+
+    function initCustomerTabs() {
+        document.querySelectorAll('[data-customer-tabs]').forEach(function (group) {
+            const buttons = Array.from(group.querySelectorAll('[data-tab-button]'));
+            const panels = Array.from(group.querySelectorAll('[data-tab-panel]'));
+
+            if (!buttons.length || !panels.length) {
+                return;
+            }
+
+            const activate = function (tabName) {
+                buttons.forEach(function (button) {
+                    button.classList.toggle('is-active', button.dataset.tabButton === tabName);
+                    button.setAttribute('aria-selected', String(button.dataset.tabButton === tabName));
+                });
+
+                panels.forEach(function (panel) {
+                    const isActive = panel.dataset.tabPanel === tabName;
+                    panel.classList.toggle('is-active', isActive);
+                    panel.hidden = !isActive;
+                });
+            };
+
+            buttons.forEach(function (button) {
+                button.addEventListener('click', function () {
+                    activate(button.dataset.tabButton);
+                });
+            });
+
+            const initialTab = buttons.find(function (button) {
+                return button.classList.contains('is-active');
+            }) || buttons[0];
+
+            if (initialTab) {
+                activate(initialTab.dataset.tabButton);
+            }
+        });
+    }
+
+    function initCustomerGallery() {
+        document.querySelectorAll('[data-product-gallery]').forEach(function (gallery) {
+            const mainImage = gallery.querySelector('[data-gallery-main]');
+            const thumbs = Array.from(gallery.querySelectorAll('[data-gallery-thumb]'));
+
+            if (!mainImage || !thumbs.length) {
+                return;
+            }
+
+            const activateThumb = function (thumb) {
+                const imageUrl = thumb.dataset.galleryImage;
+
+                thumbs.forEach(function (item) {
+                    item.classList.toggle('is-active', item === thumb);
+                });
+
+                if (imageUrl) {
+                    mainImage.src = imageUrl;
+                }
+            };
+
+            thumbs.forEach(function (thumb) {
+                thumb.addEventListener('click', function () {
+                    activateThumb(thumb);
+                });
+            });
+        });
+    }
+
+    function initCustomerImagePreview() {
+        document.querySelectorAll('[data-image-preview]').forEach(function (input) {
+            const targetSelector = input.dataset.previewTarget;
+            const previewTarget = targetSelector ? document.querySelector(targetSelector) : null;
+
+            if (!previewTarget) {
+                return;
+            }
+
+            if (!previewTarget.dataset.defaultHtml) {
+                previewTarget.dataset.defaultHtml = previewTarget.innerHTML;
+            }
+
+            input.addEventListener('change', function () {
+                const files = Array.from(input.files || []);
+
+                if (!files.length) {
+                    previewTarget.innerHTML = previewTarget.dataset.defaultHtml || '';
+                    return;
+                }
+
+                const firstFile = files[0];
+                const reader = new FileReader();
+
+                reader.onload = function (event) {
+                    const previewMarkup = [
+                        '<img class="customer-upload-preview__image" src="',
+                        event.target.result,
+                        '" alt="Preview">',
+                        '<span>',
+                        firstFile.name,
+                        files.length > 1 ? ' +' + (files.length - 1) + ' more' : '',
+                        '</span>',
+                    ].join('');
+
+                    previewTarget.innerHTML = previewMarkup;
+                };
+
+                reader.readAsDataURL(firstFile);
+            });
+        });
+    }
+
+    function initCustomerRatingGroups() {
+        document.querySelectorAll('[data-rating-group]').forEach(function (group) {
+            const buttons = Array.from(group.querySelectorAll('[data-rating-button]'));
+
+            if (!buttons.length) {
+                return;
+            }
+
+            const activate = function (index) {
+                buttons.forEach(function (button, currentIndex) {
+                    button.classList.toggle('is-active', currentIndex <= index);
+                    button.setAttribute('aria-pressed', String(currentIndex <= index));
+                });
+            };
+
+            buttons.forEach(function (button, index) {
+                button.addEventListener('click', function () {
+                    activate(index);
+                });
+            });
+
+            activate(buttons.length - 1);
         });
     }
 
