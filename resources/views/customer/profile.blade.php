@@ -5,7 +5,7 @@
 @section('customer_content')
 <div class="customer-page__container">
     <section class="customer-page-header">
-        <span class="section-kicker">My account</span>
+        <span class="section-kicker">My account section</span>
         <h1>Keep your profile, preferences, and security details in one place.</h1>
         <p>
             The layout is intentionally clean and editable-looking so it can become a real account screen once APIs
