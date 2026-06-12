@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Customer\CustomerDashboardController;
@@ -68,10 +69,27 @@ Route::post('/logout', [AuthController::class, 'logout'])
 |--------------------------------------------------------------------------
 */
 
-Route::middleware(['frontend.auth:Admin', 'check.token'])->group(function () {
+Route::prefix('admin')
+    ->name('admin.')
+    ->middleware(['frontend.auth:Admin', 'check.token'])
+    ->group(function () {
 
-    Route::get('/admin/dashboard', [CustomerDashboardController::class, 'adminDashboard'])
-        ->name('admin.dashboard');
+        Route::get('/dashboard', [AdminDashboardController::class, 'dashboard'])->name('dashboard');
+        Route::get('/users', [AdminDashboardController::class, 'users'])->name('users');
+        Route::get('/users/detail', [AdminDashboardController::class, 'userDetail'])->name('users.detail');
+        Route::get('/vendors', [AdminDashboardController::class, 'vendors'])->name('vendors');
+        Route::get('/vendors/detail', [AdminDashboardController::class, 'vendorDetail'])->name('vendors.detail');
+        Route::get('/vendors/kyc-documents', [AdminDashboardController::class, 'kycDocuments'])->name('vendors.kyc-documents');
+        Route::get('/vendors/commissions', [AdminDashboardController::class, 'commissions'])->name('vendors.commissions');
+        Route::get('/categories', [AdminDashboardController::class, 'categories'])->name('categories');
+        Route::get('/brands', [AdminDashboardController::class, 'brands'])->name('brands');
+        Route::get('/orders', [AdminDashboardController::class, 'orders'])->name('orders');
+        Route::get('/orders/detail', [AdminDashboardController::class, 'orderDetail'])->name('orders.detail');
+        Route::get('/refunds', [AdminDashboardController::class, 'refunds'])->name('refunds');
+        Route::get('/reports', [AdminDashboardController::class, 'reports'])->name('reports');
+        Route::get('/analytics', [AdminDashboardController::class, 'analytics'])->name('analytics');
+        Route::get('/audit-logs', [AdminDashboardController::class, 'auditLogs'])->name('audit-logs');
+        Route::get('/security', [AdminDashboardController::class, 'security'])->name('security');
 });
 
 

@@ -108,6 +108,11 @@ class AuthController extends Controller
                 'role_name'  => $resData['data']['role_name'],
             ]);
 
+            $roleId = (int) ($resData['data']['role_id'] ?? 0);
+            if ($roleId === 1) {
+                return redirect()->route('admin.dashboard');
+            }
+
             // Role based redirect
             switch ($resData['data']['role_name']) {
 
