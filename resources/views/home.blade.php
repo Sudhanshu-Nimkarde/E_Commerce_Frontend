@@ -18,45 +18,20 @@
 
     <main id="home">
         <section class="hero-section">
-            <div class="container">
-                <div class="hero-grid">
-                    <div class="hero-copy">
-                        <span class="hero-eyebrow">Fast delivery. Fresh picks. Better deals.</span>
-                        <h1 class="hero-title">Shop groceries, essentials, and daily needs with a smoother checkout flow.</h1>
-                        <p class="hero-subtitle">
-                            ShopEase gives your customers a clean ecommerce experience inspired by modern quick-commerce apps:
-                            faster browsing, clearer product cards, and strong calls to action.
-                        </p>
-
-                        <div class="hero-actions">
-                            <a href="#featured" class="btn btn-primary">Shop Now</a>
-                            <a href="#categories" class="btn btn-outline-primary">Browse Categories</a>
-                        </div>
-
-                        <div class="hero-metrics">
-                            <div class="hero-metric">
-                                <strong>15 min</strong>
-                                <span>Average dispatch window</span>
-                            </div>
-                            <div class="hero-metric">
-                                <strong>2,500+</strong>
-                                <span>Curated essentials</span>
-                            </div>
-                            <div class="hero-metric">
-                                <strong>24/7</strong>
-                                <span>Support and tracking</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="hero-visual">
-                        <img src="{{ asset('images/home/home-main.jpg') }}" alt="Fresh groceries and essentials">
-                        <div class="hero-floating-card">
-                            <span class="hero-floating-card__label">Trending today</span>
-                            <strong class="hero-floating-card__value">Fresh produce bundle</strong>
-                            <span class="hero-floating-card__meta">Up to 20% off on selected essentials</span>
-                        </div>
-                    </div>
+            <div class="container-fluid px-0">
+                <div class="hero-visual hero-visual--full">
+                    <video
+                        class="hero-visual__media"
+                        autoplay
+                        muted
+                        loop
+                        playsinline
+                        preload="metadata"
+                        poster="{{ asset('images/home/home-main.jpg') }}"
+                        aria-label="Fresh groceries and essentials video"
+                    >
+                        <source src="{{ asset('videos/home-hero.mp4') }}" type="video/mp4">
+                    </video>
                 </div>
             </div>
         </section>

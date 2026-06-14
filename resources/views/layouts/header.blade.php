@@ -44,8 +44,8 @@
             <ul class="nav-links">
                 <li><a href="#home" class="is-active">Home</a></li>
                 <li><a href="#categories">Categories</a></li>
-                <li><a href="#featured">Featured</a></li>
-                <li><a href="#deals">Deals</a></li>
+                {{-- <li><a href="#featured">Featured</a></li>
+                <li><a href="#deals">Deals</a></li> --}}
                 <li><a href="#reviews">Reviews</a></li>
                 <li><a href="#footer">Contact</a></li>
             </ul>
