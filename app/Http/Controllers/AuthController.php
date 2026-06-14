@@ -113,14 +113,19 @@ class AuthController extends Controller
                 return redirect()->route('admin.dashboard');
             }
 
+            if ($roleId === 2) {
+                return redirect()->route('vendor.dashboard');
+            }
+
             // Role based redirect
             switch ($resData['data']['role_name']) {
 
                 case 'Admin':
                     return redirect('/admin/dashboard');
 
+                case 'Vendor':
                 case 'Shopkeeper':
-                    return redirect('/shopkeeper/dashboard');
+                    return redirect()->route('vendor.dashboard');
 
                 case 'Customer':
                     return redirect('/customer/dashboard');
