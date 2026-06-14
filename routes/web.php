@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Customer\CustomerDashboardController;
+use App\Http\Controllers\Vendor\VendorDashboardController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -95,13 +96,39 @@ Route::prefix('admin')
 
 /*
 |--------------------------------------------------------------------------
+| Vendor Routes
+|--------------------------------------------------------------------------
+*/
+
+Route::prefix('vendor')
+    ->name('vendor.')
+    ->middleware(['frontend.auth:Vendor,Shopkeeper', 'check.token'])
+    ->group(function () {
+
+        Route::get('/', function () {
+            return redirect()->route('vendor.dashboard');
+        })->name('home');
+
+        Route::get('/dashboard', [VendorDashboardController::class, 'dashboard'])->name('dashboard');
+        Route::get('/shop-management', [VendorDashboardController::class, 'shopManagement'])->name('shop-management');
+        Route::get('/product-management', [VendorDashboardController::class, 'productManagement'])->name('product-management');
+        Route::get('/inventory', [VendorDashboardController::class, 'inventory'])->name('inventory');
+        Route::get('/order-handling', [VendorDashboardController::class, 'orderHandling'])->name('order-handling');
+        Route::get('/discounts-marketing', [VendorDashboardController::class, 'discountsMarketing'])->name('discounts-marketing');
+        Route::get('/earnings', [VendorDashboardController::class, 'earnings'])->name('earnings');
+        Route::get('/customer-interaction', [VendorDashboardController::class, 'customerInteraction'])->name('customer-interaction');
+    });
+
+
+/*
+|--------------------------------------------------------------------------
 | Shopkeeper Routes
 |--------------------------------------------------------------------------
 */
 
-Route::middleware(['frontend.auth:Shopkeeper', 'check.token'])->group(function () {
+Route::middleware(['frontend.auth:Vendor,Shopkeeper', 'check.token'])->group(function () {
 
-    Route::get('/shopkeeper/dashboard', [CustomerDashboardController::class, 'shopkeeperDashboard'])
+    Route::get('/shopkeeper/dashboard', [VendorDashboardController::class, 'dashboard'])
         ->name('shopkeeper.dashboard');
 });
 
